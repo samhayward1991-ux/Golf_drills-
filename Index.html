@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tommy Fleetwood Swing Drill Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy: #0d1b2a;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --slate: #4a5568;
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --border: #e2d9c8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 50%, #0d2b1a 100%);
+    padding: 60px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .flag-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 8vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span {
+    display: block;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 24px;
+    margin-top: 10px;
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0;
+  }
+
+  /* SWING DNA */
+  .dna-section {
+    background: #111f2e;
+    padding: 48px 20px;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    text-align: center;
+    margin-bottom: 32px;
+    font-weight: 700;
+  }
+
+  .dna-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .dna-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 20px 18px;
+    transition: border-color 0.2s;
+  }
+
+  .dna-card:hover {
+    border-color: rgba(201,168,76,0.5);
+  }
+
+  .dna-icon {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .dna-card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+  }
+
+  .dna-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+  }
+
+  /* DRILLS SECTION */
+  .drills-section {
+    background: var(--cream);
+    color: var(--navy);
+    padding: 56px 20px;
+  }
+
+  .drills-section .section-label {
+    color: var(--green);
+  }
+
+  .drills-section .section-title {
+    color: var(--navy);
+  }
+
+  .phase-group {
+    max-width: 800px;
+    margin: 0 auto 48px;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .phase-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .phase-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .phase-header p {
+    font-size: 12px;
+    color: var(--slate);
+    margin-top: 2px;
+  }
+
+  .drill-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--green);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .drill-card:hover {
+    box-shadow: 0 4px 20px rgba(13,27,42,0.1);
+    transform: translateY(-1px);
+  }
+
+  .drill-card.gold-border {
+    border-left-color: var(--gold);
+  }
+
+  .drill-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .drill-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .drill-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .tag-green { background: #d1f0e0; color: #1a6640; }
+  .tag-gold { background: #fdf0d0; color: #8a6010; }
+  .tag-navy { background: #dce4f0; color: #1a3a6c; }
+  .tag-red { background: #fde8e8; color: #8b2020; }
+
+  .drill-why {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  .drill-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--slate);
+  }
+
+  .drill-steps {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .drill-steps li {
+    counter-increment: step;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--slate);
+    padding: 8px 0 8px 36px;
+    position: relative;
+    border-bottom: 1px solid #f0ece4;
+  }
+
+  .drill-steps li:last-child { border-bottom: none; }
+
+  .drill-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feel-box {
+    background: linear-gradient(135deg, #0d1b2a, #1a3a5c);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    border-left: 3px solid var(--gold);
+  }
+
+  .feel-box strong {
+    color: var(--gold-light);
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  /* PRACTICE PLAN */
+  .plan-section {
+    background: #111f2e;
+    padding: 56px 20px;
+  }
+
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .plan-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 24px;
+  }
+
+  .plan-day {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .plan-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--white);
+  }
+
+  .plan-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .plan-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-light);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  /* KEY FEELS */
+  .feels-section {
+    background: var(--cream);
+    padding: 48px 20px;
+    color: var(--navy);
+  }
+
+  .feels-section .section-label { color: var(--green); }
+  .feels-section .section-title { color: var(--navy); }
+
+  .feels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .feel-card {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .feel-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .feel-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+
+  .feel-card p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #070f18;
+    padding: 28px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  footer span { color: var(--gold); }
+
+  /* PROGRESS TRACKER */
+  .tracker-section {
+    background: #0d1b2a;
+    padding: 48px 20px;
+  }
+
+  .tracker-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .tracker-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    text-align: center;
+  }
+
+  .tracker-sub {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+  }
+
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    user-select: none;
+  }
+
+  .check-item.checked {
+    background: rgba(82,183,136,0.12);
+    border-color: rgba(82,183,136,0.4);
+  }
+
+  .check-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    font-size: 13px;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--green-light);
+    border-color: var(--green-light);
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .check-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+  }
+
+  .check-item.checked .check-text {
+    color: rgba(255,255,255,0.9);
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats { gap: 24px; }
+    .drill-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="flag-badge">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Southport, England &nbsp;·&nbsp; PGA Tour & DP World Tour</div>
+  <h1>Tommy Fleetwood<span>Swing Drill Guide</span></h1>
+  <p class="hero-sub">Build the swing of Fairway Jesus</p>
+  <p class="hero-desc">One of the purest ball strikers on the planet. Tommy's swing blends a wide chest turn, deep shallowing move, and a signature abbreviated follow-through that produces elite consistency. Here's how to build it.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">8</span><span class="stat-label">Core Drills</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Key Phases</span></div>
+    <div class="stat"><span class="stat-num">⛳</span><span class="stat-label">Tour-Proven</span></div>
+    <div class="stat"><span class="stat-num">2024</span><span class="stat-label">Olympic Silver</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SWING DNA -->
+<section class="dna-section">
+  <p class="section-label">What Makes Tommy Different</p>
+  <h2 class="section-title">The Fleetwood Swing DNA</h2>
+  <div class="dna-grid">
+    <div class="dna-card">
+      <span class="dna-icon">🤲</span>
+      <h3>Strong Grip</h3>
+      <p>Right hand noticeably under the club. Promotes a draw and helps control the face through impact.</p>
+    </div>
+    <div class="dna-card">
+      <span class="dna-icon">🔄</span>
+      <h3>Full Chest Turn</h3>
+      <p>Back fully facing the target at the top. One of the widest shoulder turns on tour for his height.</p>
+    </div>
+    <div class="dna-card">
+      <span class="dna-icon">↙️</span>
+      <h3>Deep Shallowing</h3>
+      <p>Right shoulder drops low on the way down. The "underhanded javelin" move that creates tremendous lag and power.</p>
+    </div>
+    <div class="dna-card">
+      <span class="dna-icon">✋</span>
+      <h3>Flat Lead Wrist</h3>
+      <p>Clubface slightly closed to his wrist at the top — one of his most distinctive and repeatable positions.</p>
+    </div>
+    <div class="dna-card">
+      <span class="dna-icon">🎯</span>
+      <h3>Short Follow-Through</h3>
+      <p>Deliberately abbreviated finish keeps him centred over the ball and prevents flipping — built through thousands of punch shots.</p>
+    </div>
+    <div class="dna-card">
+      <span class="dna-icon">🧘</span>
+      <h3>Quiet Lower Body</h3>
+      <p>Minimal sway on the backswing. Stable base allows the upper body to dominate the turn.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DRILLS -->
+<section class="drills-section">
+  <p class="section-label">The Training Programme</p>
+  <h2 class="section-title">The 8 Essential Drills</h2>
+
+  <!-- PHASE 1: SET UP & GRIP -->
+  <div class="phase-group">
+    <div class="phase-header">
+      <div class="phase-num">1</div>
+      <div>
+        <h2>Set Up & Grip</h2>
+        <p>Build Tommy's foundation before touching anything else</p>
+      </div>
+    </div>
+
+    <div class="drill-card gold-border">
+      <div class="drill-top">
+        <div class="drill-name">The Strong Grip Check</div>
+        <div class="drill-tags">
+          <span class="tag tag-gold">Setup</span>
+          <span class="tag tag-green">Daily</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Tommy's strong right-hand grip is the engine behind his consistent draw and face control. Without this, the other moves won't produce the same results.</p>
+      <ol class="drill-steps">
+        <li>Address the ball normally, then look down at your left hand — you should see 2.5 to 3 knuckles.</li>
+        <li>Place the right hand so the palm faces slightly downward (under the club, not to the side). The V formed by your thumb and index should point to your right shoulder.</li>
+        <li>Hold a club at home and check in a mirror — the right forearm should look slightly more under the shaft than feels natural at first.</li>
+        <li>Hit 10 chip shots to cement the feeling before any full swings.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"My right hand feels like it's more under the grip than I'm used to. Like I'm carrying a tray."</div>
+    </div>
+
+    <div class="drill-card gold-border">
+      <div class="drill-top">
+        <div class="drill-name">Wide Stance & Spine Tilt</div>
+        <div class="drill-tags">
+          <span class="tag tag-gold">Setup</span>
+          <span class="tag tag-navy">Mirror</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Tommy sets up with a slightly wider than average stance and tilts away from the target at address. This biased setup supports his big shoulder turn and shallow downswing.</p>
+      <ol class="drill-steps">
+        <li>Stand in front of a mirror. Set up with feet slightly wider than shoulder width for irons, wider still for driver.</li>
+        <li>Feel your weight fractionally favouring the right side (60/40). Right shoulder should sit noticeably lower than the left.</li>
+        <li>Ball position just inside the lead heel for irons. Check you're balanced in the middle of your feet — not on your toes or heels.</li>
+        <li>Relax your upper back (thoracic spine). Tommy keeps a soft, relaxed posture at address — no tension in the shoulders.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"I'm sitting into it slightly, weight a touch back. Right shoulder down. Relaxed and ready."</div>
+    </div>
+  </div>
+
+  <!-- PHASE 2: TAKEAWAY & BACKSWING -->
+  <div class="phase-group">
+    <div class="phase-header">
+      <div class="phase-num">2</div>
+      <div>
+        <h2>Takeaway & Backswing</h2>
+        <p>Chest turn and club staying in front of the body</p>
+      </div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">Chest Turn Takeaway Drill</div>
+        <div class="drill-tags">
+          <span class="tag tag-green">Backswing</span>
+          <span class="tag tag-navy">Mirror</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Tommy initiates the swing by turning his chest away from the target — not by pushing with his hands. The club stays connected in front of his body throughout the takeaway.</p>
+      <ol class="drill-steps">
+        <li>Hold a headcover under your lead armpit. Make a takeaway — if it drops, your arms are disconnecting from your body rotation.</li>
+        <li>Turn until you can see your left chest logo (or left pec) in the mirror. That's where the takeaway ends and the full turn begins.</li>
+        <li>Hips should rotate freely alongside the shoulders — don't restrict them. Tommy doesn't hold his hips back.</li>
+        <li>Do this slowly 20 times, stopping at halfway back to check the club shaft is on the correct plane (parallel to the target line).</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"I'm turning my chest, not lifting my arms. The club is just along for the ride."</div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">Full Shoulder Turn & Flat Wrist Drill</div>
+        <div class="drill-tags">
+          <span class="tag tag-green">Backswing</span>
+          <span class="tag tag-gold">Key Move</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Tommy's back fully faces the target at the top, with a flat or slightly bowed lead wrist and the clubface slightly closed. This is the most distinctive and difficult part of his swing to copy.</p>
+      <ol class="drill-steps">
+        <li>At address, place an alignment stick across your shoulders. On the backswing, turn until the stick points at the target — that's a full shoulder turn.</li>
+        <li>At the top, check your lead wrist in a mirror — it should be flat or very slightly bowed (cupped means the face is open, which is NOT Fleetwood).</li>
+        <li>To train the bowed wrist: use a glove under your lead wrist at the top, or simply practise the top position 30 times at home with a club, checking the wrist each rep.</li>
+        <li>The right forearm should be more under the club at the top — not over it. This is the "delivery position" Tommy is famous for.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Full turn, back to the target. Left wrist feels firm and flat, not cupped. Right forearm under the shaft."</div>
+    </div>
+  </div>
+
+  <!-- PHASE 3: TRANSITION & DOWNSWING -->
+  <div class="phase-group">
+    <div class="phase-header">
+      <div class="phase-num">3</div>
+      <div>
+        <h2>Transition & Downswing</h2>
+        <p>The shallowing move — Tommy's secret weapon</p>
+      </div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">Drop & Shallow Drill (Pump Drill)</div>
+        <div class="drill-tags">
+          <span class="tag tag-red">Advanced</span>
+          <span class="tag tag-green">Downswing</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Tommy's downswing starts with a lateral shift and a drop of the right shoulder — incredibly low. This keeps him in the "underhanded javelin throw" slot and is the source of his power and consistency from any lie.</p>
+      <ol class="drill-steps">
+        <li>Go to the top of your backswing. Stop. Now without swinging, just drop your right shoulder as low as it can go while shifting your hips laterally toward the target. Feel the club shallow behind you.</li>
+        <li>Repeat this "pump" movement 5 times before each swing during practice. Stop at halfway down and check the shaft is shallower than it was at the top.</li>
+        <li>Feel your right elbow tucking close to your right hip as you drop. This is the slot.</li>
+        <li>Hit punch shots at 60% speed focusing only on this transition — don't worry about the finish.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Right shoulder drops down toward the ball, not out toward the target. I'm throwing underarm, not overarm."</div>
+    </div>
+  </div>
+
+  <!-- PHASE 4: IMPACT -->
+  <div class="phase-group">
+    <div class="phase-header">
+      <div class="phase-num">4</div>
+      <div>
+        <h2>Impact</h2>
+        <p>Right forearm under, trail arm bent, centre contact</p>
+      </div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">Impact Bag / Towel Under Armpit Drill</div>
+        <div class="drill-tags">
+          <span class="tag tag-green">Impact</span>
+          <span class="tag tag-navy">At Home</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Tommy keeps his right forearm well under the left at impact and maintains a bent trail arm. This prevents the flip that causes hooks and inconsistency.</p>
+      <ol class="drill-steps">
+        <li>Set up an impact bag (or a heavy cushion). Strike it and hold the impact position. Check: right forearm should be under the left, both forearms rotating together.</li>
+        <li>Alternatively, use a towel under the right armpit. If it falls during impact, your right arm is disconnecting and flipping.</li>
+        <li>Hit 20 slow-motion chip shots focusing purely on the forearm position through the ball.</li>
+        <li>Progress to half swings and then full swings once the feel is embedded.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Right forearm rotating under the left. Feeling like both arms are working together through the ball — not one flipping past the other."</div>
+    </div>
+  </div>
+
+  <!-- PHASE 5: FOLLOW THROUGH -->
+  <div class="phase-group">
+    <div class="phase-header">
+      <div class="phase-num">5</div>
+      <div>
+        <h2>Follow-Through</h2>
+        <p>Tommy's most signature and copied move</p>
+      </div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">Punch Shot Follow-Through Drill</div>
+        <div class="drill-tags">
+          <span class="tag tag-gold">Signature</span>
+          <span class="tag tag-green">Follow-Through</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Tommy's abbreviated follow-through is no accident — he built it deliberately through thousands of punch shots. It keeps his upper body centred over the ball and stops him from flipping or spinning out. The short finish is actually a sign of great impact, not a restriction.</p>
+      <ol class="drill-steps">
+        <li>Hit punch shots with a 7-iron — aim to finish with the club shaft no higher than waist height, hands leading, weight fully transferred.</li>
+        <li>Focus on the zone from "club parallel before impact" to "club parallel after impact." That's Tommy's impact zone. Dial this in first.</li>
+        <li>Gradually allow the follow-through to extend naturally — but keep the feeling of the upper body staying on top of the ball, clearing the left hip to drive the club around rather than reaching up.</li>
+        <li>Hit 30 punch shots per session until the abbreviated finish feels completely natural. Then transfer it to full swings.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Punching through. Body over the ball. Left hip clearing but upper body not lunging. Finish feels compact, not reaching."</div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">Alignment Stick Gate Drill</div>
+        <div class="drill-tags">
+          <span class="tag tag-green">Path</span>
+          <span class="tag tag-navy">Range</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Tommy uses alignment sticks to prevent his downswing getting too far in-to-out. This keeps his path neutral and produces that controlled, penetrating ball flight he's known for.</p>
+      <ol class="drill-steps">
+        <li>Place two alignment sticks on the ground just outside the ball, angled to create a gate slightly wider than your clubhead.</li>
+        <li>The sticks are there to stop the downswing getting too far in-to-out (which would produce a block or snap hook).</li>
+        <li>Swing through the gate — you should feel a slightly more neutral path than an exaggerated inside attack.</li>
+        <li>Pair with the punch shot drill above for maximum effect.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Swinging through the gate. Not too in-to-out. Path feels more neutral than my natural tendencies."</div>
+    </div>
+  </div>
+
+</section>
+
+
+  <!-- PHASE 3.5: SEQUENCING & CONTACT -->
+  <div class="phase-group">
+    <div class="phase-header">
+      <div class="phase-num">3+</div>
+      <div>
+        <h2>Sequencing & Strike Control</h2>
+        <p>The missing ingredients behind Fleetwood's ball striking</p>
+      </div>
+    </div>
+
+    <div class="drill-card gold-border">
+      <div class="drill-top">
+        <div class="drill-name">Step-Through Pressure Shift Drill</div>
+        <div class="drill-tags">
+          <span class="tag tag-gold">Sequencing</span>
+          <span class="tag tag-green">Essential</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Fleetwood shifts pressure into his lead side early. This prevents getting stuck underneath and allows his famous shallow move to work correctly.</p>
+      <ol class="drill-steps">
+        <li>Set up normally with a mid iron.</li>
+        <li>Start the downswing and step toward the target with your lead foot.</li>
+        <li>Allow the body to continue rotating through impact.</li>
+        <li>Hit 15–20 half shots focusing on pressure moving left before the club releases.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Pressure moves left first, then the club shallows."</div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">Low Point Line Drill</div>
+        <div class="drill-tags">
+          <span class="tag tag-green">Contact</span>
+          <span class="tag tag-navy">Range</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Elite ball striking comes from controlling low point. Fleetwood's consistency is built on predictable turf interaction.</p>
+      <ol class="drill-steps">
+        <li>Draw a line on the turf or use spray paint on a practice area.</li>
+        <li>Place the ball just ahead of the line.</li>
+        <li>Strike shots with the divot beginning on or just after the line.</li>
+        <li>Continue until contact becomes predictable and compressed.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Ball first. Turf second. Divot after the ball."</div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">3:1 Tempo Drill</div>
+        <div class="drill-tags">
+          <span class="tag tag-green">Tempo</span>
+          <span class="tag tag-navy">Rhythm</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Fleetwood's transition is smooth and unhurried. Tempo allows the shallowing move to happen naturally.</p>
+      <ol class="drill-steps">
+        <li>Count "one-two-three" on the backswing.</li>
+        <li>Count "one" through the downswing and impact.</li>
+        <li>Maintain the same rhythm regardless of club.</li>
+        <li>Hit 20 balls focusing only on timing and balance.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Smooth away, athletic through."</div>
+    </div>
+
+    <div class="drill-card">
+      <div class="drill-top">
+        <div class="drill-name">Face Control Ladder</div>
+        <div class="drill-tags">
+          <span class="tag tag-gold">Shot Shaping</span>
+          <span class="tag tag-green">Control</span>
+        </div>
+      </div>
+      <p class="drill-why">Why Tommy does it</p>
+      <p>Fleetwood's real superpower is face control. Learning to vary ball flight builds awareness and consistency.</p>
+      <ol class="drill-steps">
+        <li>Hit 5 fades.</li>
+        <li>Hit 5 straight shots.</li>
+        <li>Hit 5 draws.</li>
+        <li>Only make small face adjustments while keeping the same swing.</li>
+      </ol>
+      <div class="feel-box"><strong>The Feel</strong>"Same swing. Different face."</div>
+    </div>
+  </div>
+
+
+<!-- PRACTICE PLAN -->
+<section class="plan-section">
+  <p class="section-label">Structure Your Sessions</p>
+  <h2 class="section-title" style="font-family:'Playfair Display',serif; text-align:center; font-size:clamp(1.6rem,5vw,2.4rem); margin-bottom:32px;">Weekly Practice Plan</h2>
+  <div class="plan-grid">
+    <div class="plan-card">
+      <p class="plan-day">Session 1 — At Home</p>
+      <h3>Foundation Work</h3>
+      <div class="plan-item"><span class="plan-dot"></span><span>3:1 tempo rehearsal × 20 reps</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Strong grip check × 20 reps in mirror</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Flat wrist top position × 30 reps</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Pump drill (transition) × 20 reps</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Chest turn takeaway with headcover</span></div>
+    </div>
+    <div class="plan-card">
+      <p class="plan-day">Session 2 — Range</p>
+      <h3>Ball Striking</h3>
+      <div class="plan-item"><span class="plan-dot"></span><span>Low point line drill × 20 balls</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>30 punch shots — abbreviated finish</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>20 half swings — check shallowing</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Gate drill — 20 balls through the sticks</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Full swings, trusting the feels</span></div>
+    </div>
+    <div class="plan-card">
+      <p class="plan-day">Session 3 — Video Review</p>
+      <h3>Check & Adjust</h3>
+      <div class="plan-item"><span class="plan-dot"></span><span>Check pressure shift into lead side</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Film down-the-line — check flat wrist at top</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Film face-on — check right shoulder drop</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Compare your top position to Tommy's</span></div>
+      <div class="plan-item"><span class="plan-dot"></span><span>Identify one thing to fix next session</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEELS -->
+<section class="feels-section">
+  <p class="section-label">Swing Thoughts</p>
+  <h2 class="section-title">Tommy's 5 Key Feels</h2>
+  <div class="feels-grid">
+    <div class="feel-card">
+      <span class="feel-emoji">🤲</span>
+      <h3>Under the Club</h3>
+      <p>Right hand feels more under than on the side. Grip pressure is even — never tight.</p>
+    </div>
+    <div class="feel-card">
+      <span class="feel-emoji">🔄</span>
+      <h3>Back to Target</h3>
+      <p>Full shoulder turn. Don't stop early. Back fully facing the target before transitioning.</p>
+    </div>
+    <div class="feel-card">
+      <span class="feel-emoji">⬇️</span>
+      <h3>Drop, Don't Throw</h3>
+      <p>Right shoulder drops down at the start of the downswing. Underhand throw, not overhand.</p>
+    </div>
+    <div class="feel-card">
+      <span class="feel-emoji">💪</span>
+      <h3>Flat & Firm</h3>
+      <p>Lead wrist firm and flat at the top. Not cupped. This controls the face through impact.</p>
+    </div>
+    <div class="feel-card">
+      <span class="feel-emoji">✂️</span>
+      <h3>Punch It Through</h3>
+      <p>Compact finish. Upper body stays over the ball. No lunging or reaching up to finish.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS TRACKER -->
+<section class="tracker-section">
+  <div class="tracker-inner">
+    <h2 class="tracker-title">Progress Tracker</h2>
+    <p class="tracker-sub">Tap each item when you've mastered it</p>
+    <div class="checklist" id="checklist">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Strong grip position grooved</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Wide stance & spine tilt set</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Chest turn takeaway connected</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Full shoulder turn achieved</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Flat lead wrist at the top</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Right forearm under — transition</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Punch shot follow-through feels natural</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Gate drill — neutral path confirmed</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Right shoulder drop on video</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Full swing looks like Tommy on video</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Pressure shift moves left before transition</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Divot starts after the ball</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">3:1 tempo maintained under speed</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Can hit fade, straight and draw on command</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span class="check-text">Pump drill shallowing without hanging back</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Tommy Fleetwood Drill Guide &nbsp;·&nbsp; Built for <span>Sam</span> &nbsp;·&nbsp; 2026</p>
+</footer>
+
+<script>
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+  }
+</script>
+
+</body>
+</html>
