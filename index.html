@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Max Homa Drill Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0d;
+    --surface: #181810;
+    --surface2: #1e1e16;
+    --border: #2a2a1e;
+    --text: #e8e0d0;
+    --muted: #888070;
+    --faint: #554e40;
+    --gold: #c8a96e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a1a14, #0f0f0d);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 22px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    color: #f0e8d8;
+    line-height: 1.15;
+  }
+  .header-sub {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .progress-pills {
+    display: flex;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .pill {
+    height: 5px;
+    border-radius: 3px;
+    flex: 1;
+    background: var(--border);
+    transition: background 0.4s;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    background: #141410;
+    border-bottom: 1px solid var(--border);
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 0 0 auto;
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--faint);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .tab.active { border-bottom-color: var(--accent); color: var(--accent); }
+  .tab .done-mark {
+    position: absolute;
+    top: 8px; right: 8px;
+    font-size: 9px;
+    display: none;
+  }
+  .tab.completed .done-mark { display: block; }
+
+  /* CONTENT */
+  .content { padding: 20px 20px 50px; }
+
+  /* DRILL HEADER CARD */
+  .drill-header {
+    background: linear-gradient(135deg, #1c1c14, #181810);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .drill-header::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, var(--accent-faint) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .drill-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .drill-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    color: #f0e8d8;
+    margin-bottom: 10px;
+  }
+  .badges { display: flex; gap: 7px; flex-wrap: wrap; }
+  .badge {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #2a2a1e;
+    color: var(--muted);
+    border: 1px solid #3a3a28;
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrap { margin-bottom: 18px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: var(--faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .progress-label span:last-child { color: var(--accent); }
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    background: linear-gradient(90deg, var(--accent-mid), var(--accent));
+  }
+
+  /* STEPS */
+  .steps-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--faint);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .step {
+    display: flex;
+    gap: 12px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    align-items: flex-start;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .step.checked {
+    background: var(--accent-bg);
+    border-color: var(--accent-border);
+  }
+  .step-circle {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid #3a3a28;
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.2s;
+    font-size: 11px;
+    color: var(--bg);
+    font-weight: bold;
+  }
+  .step.checked .step-circle {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .step-num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: bold;
+    min-width: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .step-text {
+    font-size: 14px;
+    color: #c8c0b0;
+    line-height: 1.55;
+    transition: all 0.2s;
+  }
+  .step.checked .step-text {
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+
+  /* FEEL CARD */
+  .feel-card {
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    background: #1a1a10;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .feel-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .feel-text {
+    font-size: 13px;
+    color: #a09878;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* TIP CARD */
+  .tip-card {
+    background: #161612;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .tip-icon { font-size: 16px; flex-shrink: 0; }
+  .tip-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--faint);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tip-text {
+    font-size: 13px;
+    color: #887860;
+    line-height: 1.5;
+  }
+
+  /* COMPLETE STATE */
+  .complete-state {
+    text-align: center;
+    padding: 10px 0 20px;
+  }
+  .complete-trophy { font-size: 36px; margin-bottom: 8px; }
+  .complete-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .complete-sub { font-size: 13px; color: var(--faint); margin-bottom: 18px; }
+  .btn-row { display: flex; gap: 10px; justify-content: center; }
+
+  /* BUTTONS */
+  .btn-reset {
+    padding: 11px 20px;
+    border-radius: 8px;
+    background: none;
+    border: 1px solid #3a3a28;
+    color: var(--faint);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+  }
+  .btn-next {
+    padding: 11px 26px;
+    border-radius: 8px;
+    background: var(--accent);
+    border: none;
+    color: var(--bg);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: inherit;
+  }
+  .btn-reset-bottom {
+    width: 100%;
+    padding: 12px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--faint);
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: inherit;
+  }
+
+  /* ALL DONE */
+  .all-done {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #1a1a14, #141410);
+    border: 1px solid #2a2a1e;
+    border-radius: 14px;
+    margin: 10px 0 30px;
+  }
+  .all-done-trophy { font-size: 48px; margin-bottom: 12px; }
+  .all-done-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .all-done-sub { font-size: 14px; color: var(--muted); font-style: italic; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Swing Lab</div>
+  <div class="header-title">Max Homa<br>Drill Guide</div>
+  <div class="header-sub">9 drills · Build his swing from the ground up</div>
+  <div class="progress-pills" id="pills"></div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="content" id="content"></div>
+
+<script>
+const drills = [
+  {
+    id: 0,
+    icon: "🏌️",
+    name: "Towel Under the Armpits",
+    tag: "HOMA'S OWN DRILL",
+    focus: "Arms & Body Connection",
+    difficulty: "Beginner",
+    equipment: "Towel + Any Club",
+    accent: "#c8a96e",
+    steps: [
+      "Fold a small towel and tuck it under both armpits before gripping the club.",
+      "Take your normal address position with an 8-iron.",
+      "Make slow half-swing punch shots, focusing on keeping the towel in place.",
+      "If the towel drops, your arms have disconnected from your body rotation.",
+      "Hit 20 punch shots with the towel in. Then remove it and replicate the feeling.",
+    ],
+    feel: "\"I can feel my big muscles taking the club back and through.\" — Max Homa",
+    tip: "Don't grip tighter to keep the towel in — rotate more instead.",
+  },
+  {
+    id: 1,
+    icon: "🎯",
+    name: "Club Line on the Ground",
+    tag: "BALL STRIKING",
+    focus: "Swing Path & Consistency",
+    difficulty: "Intermediate",
+    equipment: "3 Spare Clubs + 8-Iron",
+    accent: "#7eb8a4",
+    steps: [
+      "Lay a 7-iron on the ground BETWEEN your feet and the ball — parallel to the target line (not on the target line itself).",
+      "Extend a driver from it pointing toward the target. Extend a fairway wood pointing away — one long straight line through the ball.",
+      "Grab your 8-iron and take slow half swings.",
+      "HALFWAY BACK checkpoint: your lead arm (left for right-handers) should match the line when it's parallel to the ground.",
+      "HALFWAY THROUGH checkpoint: your trail arm should match the line when parallel to the ground on the follow-through.",
+      "Note: at the TOP of the backswing your arms will be above the line — that's fine. Only check at the two halfway positions.",
+      "Progress to hitting balls once you've grooved the path.",
+    ],
+    feel: "Think mirror image — arms trace the same path going back as coming through.",
+    tip: "Most amateurs cross the line going back. This drill makes the error immediately visible at the halfway checkpoints.",
+  },
+  {
+    id: 2,
+    icon: "🔄",
+    name: "Two Big Turns",
+    tag: "TEMPO",
+    focus: "Rotation & Rhythm",
+    difficulty: "Beginner",
+    equipment: "Any Club",
+    accent: "#d4776a",
+    steps: [
+      "Take your address. Place your right hand on your left shoulder as a checkpoint.",
+      "Focus only on turning your upper body fully away from the target (Turn 1).",
+      "Feel a complete weight shift onto your trail foot at the top.",
+      "Then turn fully through the ball, facing the target at finish (Turn 2).",
+      "No arms — just two big turns. Add the club back in and chase that same feeling.",
+    ],
+    feel: "\"It just feels like I'm making two big turns.\" — Max Homa",
+    tip: "Homa says when he's off, he's fast. Slow each turn down — almost uncomfortably slow.",
+  },
+  {
+    id: 3,
+    icon: "🪞",
+    name: "Arms Around, Not Up",
+    tag: "BACKSWING SHAPE",
+    focus: "Arm Plane & Posture",
+    difficulty: "Intermediate",
+    equipment: "Mirror + Any Iron",
+    accent: "#8a7eb8",
+    steps: [
+      "Set up facing a full-length mirror (or record yourself face-on).",
+      "Make slow backswings focusing on keeping your arms tracking AROUND your body.",
+      "At the top, your left arm should run through your right shoulder — not above it.",
+      "If your arms are above your shoulder line, you're lifting instead of turning.",
+      "Hit half shots on the range reinforcing this lower, more around arm position.",
+    ],
+    feel: "Arms around = you can rotate through. Arms up = you'll thrust your hips at the ball to compensate.",
+    tip: "This was the single biggest change in Homa's career improvement. Takes time — be patient.",
+  },
+  {
+    id: 4,
+    icon: "⏱️",
+    name: "Smooth Tempo Countdown",
+    tag: "RHYTHM",
+    focus: "Tempo & Timing",
+    difficulty: "Beginner",
+    equipment: "Any Club",
+    accent: "#a0b86e",
+    steps: [
+      "On the range, pick a target 50 yards away — much shorter than normal.",
+      "Count '1' at takeaway, '2' at the top, '3' at impact — evenly spaced.",
+      "The gap between '2' and '3' should feel almost too slow — that's the transition pause.",
+      "Once tempo feels silky smooth at 50 yards, extend to full shots.",
+      "Any time your swing feels off on the course, go back to counting.",
+    ],
+    feel: "Homa: \"Most people are too fast. Almost nobody is too slow. Nice and smooth, no burst.\"",
+    tip: "Tour pros average a 3:1 backswing-to-downswing ratio. Feel that pause at the top.",
+  },
+  {
+    id: 5,
+    icon: "🌀",
+    name: "One-Piece Takeaway",
+    tag: "TAKEAWAY",
+    focus: "Backswing Initiation",
+    difficulty: "Beginner",
+    equipment: "Any Iron + Headcover",
+    accent: "#b87eb8",
+    steps: [
+      "Place a headcover just outside and slightly behind the ball — about 6 inches.",
+      "Take your address position with an 8-iron.",
+      "Make a slow takeaway. The goal is to keep the clubhead low and brush past the headcover — don't pick up and miss it.",
+      "Focus on club, hands, arms and chest moving away as ONE unit — not hands leading.",
+      "If you pick the club up early with your hands, you'll lift over the headcover instead of sweeping past it.",
+      "Once comfortable, remove the headcover and replicate the low, one-piece feel.",
+    ],
+    feel: "Shoulders and chest initiate the move — your hands are just along for the ride.",
+    tip: "A good takeaway sets everything up. If the first 18 inches are right, the rest of the swing becomes much easier.",
+  },
+  {
+    id: 6,
+    icon: "⬇️",
+    name: "Hip Bump Downswing",
+    tag: "DOWNSWING",
+    focus: "Transition & Sequencing",
+    difficulty: "Intermediate",
+    equipment: "Any Iron",
+    accent: "#e8a05a",
+    steps: [
+      "Take a slow backswing to the top and PAUSE for a full second.",
+      "From that paused position, consciously bump your lead hip (left hip for right-handers) laterally toward the target — before anything else moves.",
+      "Let your arms, hands and club drop naturally as a result of that hip movement.",
+      "Don't try to swing the club down — let the hip lead and the arms follow.",
+      "It will feel exaggerated at first. That's correct — most amateurs start the downswing with their shoulders which throws the club over the top.",
+      "Gradually reduce the pause until the transition feels fluid, keeping the hip-first sequence.",
+    ],
+    feel: "Hips shift first → torso follows → arms drop → club arrives last. That's the power sequence.",
+    tip: "The pause at the top is key early on. It breaks the habit of rushing the transition with the upper body.",
+  },
+  {
+    id: 7,
+    icon: "🤲",
+    name: "Passive Wrist Hinge",
+    tag: "WRIST HINGE",
+    focus: "Backswing Loading",
+    difficulty: "Beginner",
+    equipment: "Any Iron",
+    accent: "#6ea8d4",
+    steps: [
+      "Grip down to the middle of the shaft — less club weight makes the natural hinge easier to feel.",
+      "Make a slow one-piece takeaway, turning your shoulders with no deliberate wrist action.",
+      "As your lead arm reaches parallel to the ground (halfway back), let the weight of the clubhead pull your wrists into a hinge — don't force it.",
+      "By halfway back you should have roughly 90° of wrist hinge, loaded naturally by momentum.",
+      "At the top the club should feel 'coiled' — like a spring — without your hands having done anything deliberate.",
+      "Grip back up to full length and replicate that same passive, responsive feeling.",
+    ],
+    feel: "The hinge responds to the swing — you don't create it. Let the clubhead's weight do the work.",
+    tip: "Early casting (hinging immediately from address) and late flipping (forcing it at the top) are the two killers. Both come from trying to control the hinge rather than letting it happen.",
+  },
+  {
+    id: 8,
+    icon: "↔️",
+    name: "Long & Wide Takeaway",
+    tag: "WIDTH",
+    focus: "Arc & Power",
+    difficulty: "Beginner",
+    equipment: "Any Iron + spare ball or tee",
+    accent: "#d46a8a",
+    steps: [
+      "Option A — Spare ball: Hold a second ball between the fingers of your lead hand and the grip. Make a backswing — if your lead elbow bends early the ball drops. Keeping width keeps it in place.",
+      "Option B — Tee drill: Push a tee into the butt end of your grip. At halfway back the tee should point away from you — not back toward your body. If it points back, your hands have collapsed inward.",
+      "Focus on pushing the clubhead as far from the ball as possible in the first 18 inches — low and wide, not up.",
+      "Your lead arm should stay comfortably extended (not rigid or locked) all the way to the top.",
+      "Combine with the one-piece takeaway drill — width and a good takeaway are the same thing done together.",
+      "Hit slow half shots, prioritising that wide, extended feel over any thought of power.",
+    ],
+    feel: "Think 'long and low' — push the clubhead away from the ball as far as possible before anything folds.",
+    tip: "A wide arc gives you more time to build speed. Narrow = rushed, weak impact. Width is free power.",
+  },
+];
+
+let active = 0;
+const checked = {}; // "drillId-stepIdx" -> bool
+const completed = new Set();
+
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function setCSSVars(drill) {
+  const root = document.documentElement;
+  root.style.setProperty('--accent', drill.accent);
+  root.style.setProperty('--accent-mid', hexToRgba(drill.accent, 0.6));
+  root.style.setProperty('--accent-faint', hexToRgba(drill.accent, 0.07));
+  root.style.setProperty('--accent-bg', hexToRgba(drill.accent, 0.06));
+  root.style.setProperty('--accent-border', hexToRgba(drill.accent, 0.25));
+}
+
+function getProgress(drillId) {
+  return drills[drillId].steps.filter((_, i) => checked[`${drillId}-${i}`]).length;
+}
+
+function renderPills() {
+  const el = document.getElementById('pills');
+  el.innerHTML = drills.map((d, i) => {
+    const bg = completed.has(i) ? d.accent : i === active ? hexToRgba(d.accent, 0.4) : '#2a2a1e';
+    return `<div class="pill" style="background:${bg}"></div>`;
+  }).join('');
+}
+
+function renderTabs() {
+  const el = document.getElementById('tabs');
+  el.innerHTML = drills.map((d, i) => {
+    const cls = ['tab', i === active ? 'active' : '', completed.has(i) ? 'completed' : ''].join(' ');
+    const doneColor = completed.has(i) ? d.accent : 'transparent';
+    return `<button class="${cls}" onclick="switchDrill(${i})" style="--accent:${d.accent}">
+      ${d.icon}
+      <span class="done-mark" style="color:${doneColor}">✓</span>
+    </button>`;
+  }).join('');
+}
+
+function renderContent() {
+  const drill = drills[active];
+  const progress = getProgress(active);
+  const total = drill.steps.length;
+  const pct = (progress / total) * 100;
+  const isComplete = completed.has(active);
+  const allDone = drills.every((_, i) => completed.has(i));
+
+  if (allDone) {
+    document.getElementById('content').innerHTML = `
+      <div class="all-done">
+        <div class="all-done-trophy">🏆</div>
+        <div class="all-done-title">All 5 Drills Complete!</div>
+        <div class="all-done-sub">Take these feelings to the range.<br>Homa's swing is built on two big turns — now so is yours.</div>
+      </div>
+      <button class="btn-reset-bottom" onclick="resetAll()">Start Over</button>
+    `;
+    return;
+  }
+
+  document.getElementById('content').innerHTML = `
+    <div class="drill-header">
+      <div class="drill-tag">${drill.tag}</div>
+      <div class="drill-name">${drill.name}</div>
+      <div class="badges">
+        <span class="badge">🎯 ${drill.focus}</span>
+        <span class="badge" style="color:${drill.difficulty==='Beginner'?'#a0b86e':'#c8a96e'}">📊 ${drill.difficulty}</span>
+        <span class="badge">🏌️ ${drill.equipment}</span>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Progress</span>
+        <span>${progress}/${total} steps</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:${pct}%"></div>
+      </div>
+    </div>
+
+    <div class="steps-label">Steps</div>
+    <div id="steps-list">
+      ${drill.steps.map((step, i) => {
+        const isChecked = !!checked[`${active}-${i}`];
+        return `<div class="step ${isChecked ? 'checked' : ''}" onclick="toggleStep(${active},${i})">
+          <div class="step-circle">${isChecked ? '✓' : ''}</div>
+          <span class="step-num">${i+1}</span>
+          <span class="step-text">${step}</span>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div class="feel-card">
+      <div class="feel-label">Key Feel</div>
+      <div class="feel-text">${drill.feel}</div>
+    </div>
+
+    <div class="tip-card">
+      <span class="tip-icon">💡</span>
+      <div>
+        <div class="tip-label">Pro Tip</div>
+        <div class="tip-text">${drill.tip}</div>
+      </div>
+    </div>
+
+    ${isComplete ? `
+      <div class="complete-state">
+        <div class="complete-trophy">🏆</div>
+        <div class="complete-title">Drill Complete!</div>
+        <div class="complete-sub">${active < drills.length - 1 ? 'Move on to the next drill.' : 'Final drill done!'}</div>
+        <div class="btn-row">
+          <button class="btn-reset" onclick="resetDrill()">Reset</button>
+          ${active < drills.length - 1 ? `<button class="btn-next" onclick="switchDrill(${active+1})">Next Drill →</button>` : ''}
+        </div>
+      </div>
+    ` : `<button class="btn-reset-bottom" onclick="resetDrill()">Reset Drill</button>`}
+  `;
+}
+
+function switchDrill(i) {
+  active = i;
+  setCSSVars(drills[i]);
+  renderPills();
+  renderTabs();
+  renderContent();
+  window.scrollTo(0, 0);
+}
+
+function toggleStep(drillId, stepIdx) {
+  const key = `${drillId}-${stepIdx}`;
+  checked[key] = !checked[key];
+  const drill = drills[drillId];
+  const allChecked = drill.steps.every((_, i) => checked[`${drillId}-${i}`]);
+  if (allChecked) completed.add(drillId);
+  else completed.delete(drillId);
+  renderPills();
+  renderTabs();
+  renderContent();
+}
+
+function resetDrill() {
+  drills[active].steps.forEach((_, i) => { delete checked[`${active}-${i}`]; });
+  completed.delete(active);
+  renderPills();
+  renderTabs();
+  renderContent();
+}
+
+function resetAll() {
+  Object.keys(checked).forEach(k => delete checked[k]);
+  completed.clear();
+  active = 0;
+  setCSSVars(drills[0]);
+  renderPills();
+  renderTabs();
+  renderContent();
+}
+
+// Init
+setCSSVars(drills[0]);
+renderPills();
+renderTabs();
+renderContent();
+</script>
+</body>
+</html>
