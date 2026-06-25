@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homa × Blackburn — Drill Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --grey1: #111111;
+  --grey2: #1a1a1a;
+  --grey3: #2a2a2a;
+  --grey4: #3d3d3d;
+  --grey5: #666666;
+  --grey6: #999999;
+  --white: #f5f5f5;
+  --lime: #c8f135;
+  --lime-dim: rgba(200,241,53,0.12);
+  --lime-border: rgba(200,241,53,0.25);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── GRID TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,241,53,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,241,53,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--grey1);
+  border-bottom: 1px solid var(--grey3);
+  padding: 28px 20px 20px;
+  position: relative;
+  z-index: 1;
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.header-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--lime);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.header-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.header-title span {
+  color: var(--lime);
+}
+.cobra-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  padding: 5px 10px;
+  border: 1px solid var(--grey4);
+  color: var(--grey5);
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 1.5;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.header-sub {
+  font-size: 12px;
+  color: var(--grey5);
+  margin-bottom: 16px;
+  font-family: 'Space Mono', monospace;
+}
+.focus-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.focus-pill {
+  font-size: 10px;
+  padding: 3px 9px;
+  border: 1px solid var(--lime-border);
+  color: var(--lime);
+  border-radius: 2px;
+  background: var(--lime-dim);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+}
+.progress-track {
+  display: flex;
+  gap: 3px;
+  margin-top: 0;
+}
+.prog-seg {
+  height: 3px;
+  flex: 1;
+  background: var(--grey3);
+  border-radius: 1px;
+  transition: background 0.3s;
+}
+
+/* ── TABS ── */
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  background: var(--grey1);
+  border-bottom: 1px solid var(--grey3);
+  scrollbar-width: none;
+  position: relative;
+  z-index: 1;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--grey4);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  font-family: inherit;
+}
+.tab.active { border-bottom-color: var(--lime); color: var(--lime); }
+.tab .tick {
+  position: absolute;
+  top: 6px; right: 5px;
+  font-size: 7px;
+  color: var(--lime);
+  display: none;
+  font-family: 'Space Mono', monospace;
+}
+.tab.done .tick { display: block; }
+
+/* ── CONTENT ── */
+.content {
+  padding: 16px 16px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── DRILL HEADER BLOCK ── */
+.drill-head {
+  background: var(--grey2);
+  border: 1px solid var(--grey3);
+  border-top: 2px solid var(--lime);
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.drill-source {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: var(--lime);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.drill-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  background: var(--grey3);
+  color: var(--grey6);
+  border: 1px solid var(--grey3);
+  letter-spacing: 0.05em;
+}
+.badge.beg { color: #4ade80; border-color: rgba(74,222,128,0.2); background: rgba(74,222,128,0.06); }
+.badge.int { color: #fb923c; border-color: rgba(251,146,60,0.2); background: rgba(251,146,60,0.06); }
+.badge.adv { color: #f87171; border-color: rgba(248,113,113,0.2); background: rgba(248,113,113,0.06); }
+
+/* ── PROGRESS ── */
+.prog-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: var(--grey5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.prog-row span:last-child { color: var(--lime); }
+.prog-bar {
+  height: 3px;
+  background: var(--grey3);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.prog-fill {
+  height: 100%;
+  background: var(--lime);
+  border-radius: 1px;
+  transition: width 0.4s ease;
+}
+
+/* ── STEPS ── */
+.steps-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: var(--grey5);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.step {
+  display: flex;
+  gap: 10px;
+  padding: 11px 12px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  background: var(--grey2);
+  border: 1px solid var(--grey3);
+  cursor: pointer;
+  transition: all 0.15s;
+  align-items: flex-start;
+}
+.step.on {
+  background: var(--lime-dim);
+  border-color: var(--lime-border);
+}
+.step-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--grey4);
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.15s;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--black);
+  font-family: 'Space Mono', monospace;
+}
+.step.on .step-dot {
+  background: var(--lime);
+  border-color: var(--lime);
+}
+.step-n {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--lime);
+  font-weight: 700;
+  min-width: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.step-txt {
+  font-size: 13px;
+  color: #cccccc;
+  line-height: 1.6;
+  transition: all 0.15s;
+}
+.step.on .step-txt {
+  color: var(--grey5);
+  text-decoration: line-through;
+}
+
+/* ── QUOTE BLOCK ── */
+.quote-block {
+  border-left: 2px solid var(--lime);
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  background: var(--grey2);
+}
+.quote-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  color: var(--lime);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.quote-text {
+  font-size: 13px;
+  color: #aaaaaa;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ── TIP BLOCK ── */
+.tip-block {
+  display: flex;
+  gap: 10px;
+  padding: 11px 13px;
+  background: var(--grey2);
+  border: 1px solid var(--grey3);
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+.tip-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.tip-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  color: var(--grey5);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.tip-text { font-size: 12px; color: var(--grey6); line-height: 1.55; }
+
+/* ── COMPLETE ── */
+.complete {
+  text-align: center;
+  padding: 16px 0 20px;
+}
+.complete-icon { font-size: 36px; margin-bottom: 8px; }
+.complete-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--lime);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.complete-sub { font-size: 12px; color: var(--grey5); margin-bottom: 16px; font-family: 'Space Mono', monospace; }
+.btn-row { display: flex; gap: 8px; justify-content: center; }
+.btn-ghost {
+  padding: 10px 18px;
+  border-radius: 3px;
+  background: none;
+  border: 1px solid var(--grey3);
+  color: var(--grey5);
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+}
+.btn-solid {
+  padding: 10px 22px;
+  border-radius: 3px;
+  background: var(--lime);
+  border: none;
+  color: var(--black);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+}
+.btn-full {
+  width: 100%;
+  padding: 11px;
+  background: none;
+  border: 1px solid var(--grey3);
+  border-radius: 3px;
+  color: var(--grey5);
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── ALL DONE ── */
+.all-done {
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--grey2);
+  border: 1px solid var(--grey3);
+  border-top: 2px solid var(--lime);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.all-done-icon { font-size: 48px; margin-bottom: 14px; }
+.all-done-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--lime);
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+.all-done-mantra {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--grey5);
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+.all-done-sub {
+  font-size: 12px;
+  color: var(--grey6);
+  font-style: italic;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">// SWING LAB · MARK BLACKBURN METHOD</div>
+  <div class="header-top">
+    <div>
+      <div class="header-title">MAX <span>HOMA</span><br>DRILL SYSTEM</div>
+    </div>
+    <div class="cobra-badge">COBRA<br>STAFF<br>PLAYER</div>
+  </div>
+  <div class="header-sub">12 drills · backswing / tempo / downswing</div>
+  <div class="focus-pills">
+    <span class="focus-pill">BACKSWING</span>
+    <span class="focus-pill">TEMPO</span>
+    <span class="focus-pill">TRANSITION</span>
+    <span class="focus-pill">IMPACT</span>
+    <span class="focus-pill">POSTURE</span>
+  </div>
+  <div class="progress-track" id="pills"></div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div class="content" id="content"></div>
+
+<script>
+const drills = [
+  {
+    id: 0, icon: "📐",
+    source: "BLACKBURN · SETUP",
+    name: "Tall Posture & Hip Hinge",
+    focus: "Setup Foundation",
+    level: "beg",
+    equip: "Any Iron + Mirror",
+    steps: [
+      "Stand tall — more upright than you think. Homa has very little knee flex at address.",
+      "Tilt forward from the HIPS — not the waist. Push your backside out slightly as you hinge.",
+      "This creates the hip hinge that puts the lumbar spine in a neutral position — the foundation of everything.",
+      "Round your upper back and shoulders slightly to free your arms. Homa deliberately does this.",
+      "Arms hang naturally extended from the shoulders — no reaching, no crowding the body.",
+      "Set a tiny spine tilt away from the target — trail shoulder fractionally lower than lead.",
+      "Build this into a pre-shot routine: hinge from hips, round shoulders, hang arms. Every single shot.",
+    ],
+    feel: "Blackburn: 'It creates more hip hinge and puts his lumbar spine in a more neutral position.' Without this, you'll struggle to load and rotate on the backswing — and early extension becomes almost inevitable.",
+    tip: "Golfers who don't tilt from their hips at setup often early-extend. Homa folds this hinge into his pre-shot routine so it's automatic under pressure.",
+  },
+  {
+    id: 1, icon: "🎽",
+    source: "BLACKBURN · BACKSWING",
+    name: "Shirt Buttons Turn",
+    focus: "Ribcage Rotation",
+    level: "beg",
+    equip: "Any Iron",
+    steps: [
+      "Place your right hand flat over your chest — feel where your shirt buttons are.",
+      "Make slow backswings focusing only on turning those SHIRT BUTTONS away from the target.",
+      "Imagine showing your buttons to a camera positioned directly behind you.",
+      "Hips will rotate naturally as a result. Don't try to force them separately.",
+      "At the top, your chest should point away from target — weight loaded on the inside of your trail foot.",
+      "WARNING — the fake turn: if your shoulders move but your ribcage stays static, the arms will lift to compensate. Make sure the whole chest and ribcage coils, not just the arms.",
+    ],
+    feel: "Homa: 'It just feels like I'm making two big turns.' Blackburn calls this the ribcage driving the rotation. Shoulders and arms are passengers.",
+    tip: "This was the root of Homa's breakthrough — Blackburn got his left arm running through his right shoulder by fixing the ribcage turn first. Everything else followed.",
+  },
+  {
+    id: 2, icon: "🧤",
+    source: "HOMA'S OWN DRILL",
+    name: "Towel Under Armpits",
+    focus: "Arms & Body Connection",
+    level: "beg",
+    equip: "Towel + Any Iron",
+    steps: [
+      "Fold a small towel and tuck it under BOTH armpits before gripping the club.",
+      "Take your normal address position with an 8-iron.",
+      "Make slow half-swing punch shots — focus entirely on keeping the towel in place.",
+      "If the towel drops, your arms have run away from your body rotation.",
+      "Don't grip tighter to keep it in — rotate MORE instead.",
+      "Hit 20 punch shots with the towel in. Then remove it and replicate the connected feeling.",
+    ],
+    feel: "Homa: 'It helps me get a good feel for turning on the backswing. It helps me feel my big muscles taking the club back.' This is his most-used range drill.",
+    tip: "Blackburn confirmed this is the primary drill used to fix Homa's arm lift. A shorter swing keeps his arms from running off and swinging on their own, instead of moving with the turn of his body.",
+  },
+  {
+    id: 3, icon: "↔️",
+    source: "BLACKBURN · BACKSWING",
+    name: "Long & Wide — Arms Around",
+    focus: "Arm Plane & Width",
+    level: "int",
+    equip: "Any Iron + Optional Tee",
+    steps: [
+      "Push a tee into the butt end of your grip so it sticks out about an inch.",
+      "Make a slow takeaway. Push the CLUBHEAD as far from the ball as possible in the first 18 inches — low and wide, not up.",
+      "HALFWAY BACK check: the tee in the grip should point AWAY from your body — not back toward your stomach. If it points at you, your arms have collapsed inward.",
+      "At the top, your LEAD ARM should run through your right shoulder — not above it. That's the 'arms around' position.",
+      "Mirror drill: face a mirror face-on. Check your left arm at the top. If it's above your shoulder line, you're still lifting.",
+      "Homa's left arm now runs through his right shoulder — a shallower, more rotary top position than his old 'hands high' move.",
+    ],
+    feel: "Blackburn to Homa: 'We need to get your left arm more across your shoulders.' Homa: 'I don't feel like I'm fighting my own body anymore.'",
+    tip: "This was the single biggest change Blackburn made to Homa's swing — less arm lift, more around. Homa had limited shoulder mobility which made lifting his arms above his head unnatural. Going around suited his body perfectly.",
+  },
+  {
+    id: 4, icon: "⏸️",
+    source: "BLACKBURN · TEMPO",
+    name: "Levitation at the Top",
+    focus: "Transition & Tempo",
+    level: "beg",
+    equip: "Any Club",
+    steps: [
+      "Make your backswing at normal pace to the top.",
+      "At the top: feel a SLIGHT PAUSE — as if the club floats briefly before falling.",
+      "Blackburn calls this 'levitation.' It's not a full stop — just a moment of weightlessness where you feel you could catch the club.",
+      "From that levitation point, THEN fire your hips and rotate aggressively through the ball.",
+      "The sequence: easy backswing → float/levitate at top → aggressive turn through.",
+      "Countdown drill: count '1-and-2' on the backswing, 'GO' at the levitation moment, then fire.",
+    ],
+    feel: "Blackburn: 'We work on a slight levitation at the top of the backswing. He feels like he can catch the club in transition to then turn aggressively.' This is Homa's actual tempo secret.",
+    tip: "Homa: 'When I get off, I'm fast. Most people would be fast, in general. I don't think very many people are too slow.' The levitation naturally creates the 3:1 backswing-to-downswing ratio that tour pros use.",
+  },
+  {
+    id: 5, icon: "🔻",
+    source: "BLACKBURN · DOWNSWING",
+    name: "Dump the Club Out",
+    focus: "Shallow Transition",
+    level: "int",
+    equip: "Any Iron",
+    steps: [
+      "Get to the top of your backswing slowly.",
+      "The OLD fault: butt of the club points at your shoes in transition — steep, causing a late flip at impact.",
+      "The FIX: as you start down, feel like you're THROWING the club OUT and BEHIND you — like dumping it over your trail shoulder.",
+      "The butt of the club should feel like it's working toward the HORIZON as you drop into the downswing, not toward the ground.",
+      "This shallows the club early — the opposite of getting steep. The face arrives from inside the target line.",
+      "Drill: stand without a club and make the underhand throw motion with your trail arm — elbow drops, forearm goes under. Then replicate with the club.",
+    ],
+    feel: "Blackburn: 'He's trying to dump the club out — imagine he's throwing it behind him. Then he can square the face through the rotation of his body.' This gave Homa his draw.",
+    tip: "Homa's old swing got steep early, forcing him to flip the club to square it — causing inconsistent trajectories. This move eliminated the flip entirely. Slicers: this is your fix.",
+  },
+  {
+    id: 6, icon: "🦵",
+    source: "BLACKBURN · DOWNSWING",
+    name: "Hip Bump — Push Butt Back",
+    focus: "Transition Sequence",
+    level: "int",
+    equip: "Any Iron",
+    steps: [
+      "Make a slow backswing to the top and PAUSE for a full second.",
+      "FIRST MOVE: bump your lead hip LATERALLY toward the target — before anything else moves.",
+      "Simultaneously: drive the TOES of your lead foot into your shoe. This naturally pushes your trail hip/butt BACK and chest DOWN.",
+      "These two things together — hip bump target-ward + butt staying back — create space for the arms to drop into the slot.",
+      "This is the exact opposite of standing up (early extension) where the hips thrust toward the ball.",
+      "Progress: reduce the pause until the transition flows, but keep the hip-first sequence ingrained.",
+    ],
+    feel: "Homa: 'Everybody's different, but for me, my right shoulder feels like it's pulling me through impact.' That right-shoulder-pulling feel IS the result of this correct hip + butt sequence.",
+    tip: "If you stand up at impact, this drill is your direct fix. The pause at the top is essential early on — it breaks the habit of rushing the transition with upper body. Homa hits punch shots to ingrain this feeling.",
+  },
+  {
+    id: 7, icon: "🔧",
+    source: "HOMA'S OWN KEY",
+    name: "Skyward Face — Downswing Check",
+    focus: "Clubface & Shallow Path",
+    level: "int",
+    equip: "Any Iron",
+    steps: [
+      "At the top of your backswing, check your clubface — it should be pointing SKYWARD (face up toward the sky).",
+      "This is a strong/closed position at the top. Most high handicappers have it too open (facing behind them).",
+      "As your arms drop in the downswing, the face should move to be PARALLEL TO YOUR SPINE — not pointing at the ground.",
+      "With the face in this position at halfway down, the sweet spot stays BEHIND you rather than lurching toward the target line.",
+      "Result: you compress the ball through rotation instead of wiping across it.",
+      "Check it slowly in a mirror or on video — pause at halfway down and see where the face points.",
+    ],
+    feel: "Homa: 'When you get the clubface in this position halfway down, you'll notice a big difference in how the ball comes off the club. You'll compress it instead of wiping across it.'",
+    tip: "This is directly connected to the 'dump the club out' drill — when you shallow correctly, the face naturally arrives in this position. Do both drills together and check them as a pair.",
+  },
+  {
+    id: 8, icon: "👊",
+    source: "HOMA'S PUNCH SHOT DRILL",
+    name: "Punch Shots — Arms & Body Unison",
+    focus: "Connectivity & Consistency",
+    level: "beg",
+    equip: "8-Iron",
+    steps: [
+      "Set up for a punch shot — ball slightly back in stance, slightly more shaft lean than normal.",
+      "Make a three-quarter backswing maximum — arms stay connected to the turning body.",
+      "Strike the ball with a PUNCH motion: lead arm firm, body continuing to rotate through, no flipping.",
+      "The shorter swing forces your arms to move with your body turn — they can't run ahead.",
+      "Hit 20-30 punch shots before every range session as your warm-up.",
+      "Once connected, extend the swing gradually to full length, keeping that same arms-with-body feeling.",
+    ],
+    feel: "Homa makes partial punch shots as his primary connectivity drill — Blackburn confirmed this. A shorter swing keeps his arms from running off and swinging on their own instead of moving with the turn.",
+    tip: "Blackburn: 'Position over perfection.' Homa uses this mantra during tournament weeks when he's executing rather than perfecting. Punch shots are how he gets into that headspace — simple, connected, committed.",
+  },
+  {
+    id: 9, icon: "🚪",
+    source: "HOMA'S OWN FEEL",
+    name: "Open the Door — Trail Arm Backswing",
+    focus: "Trail Arm & Depth",
+    level: "beg",
+    equip: "Any Iron (or no club)",
+    steps: [
+      "Stand in your address posture WITHOUT a club first. Raise your trail hand (right hand for right-handers) to a door handle height in front of you.",
+      "Now swing that trail arm back and AROUND — as if pulling a door open behind you. Feel how the arm naturally goes around your body, the elbow softens and bends, and the forearm rotates slightly open.",
+      "Notice: you cannot do this motion by lifting your arm above your head. It forces the arm to track around and behind you — exactly the 'arms around not up' move.",
+      "Now take your grip. Make slow backswings with that same door-opening feel in your trail arm — back and around, elbow softening naturally as it folds.",
+      "At halfway back your trail elbow should be pointing down toward the ground — not flaring out behind you (chicken wing) and not driving upward.",
+      "The stretch you feel across your chest and upper back IS the elastic tension Homa loads before firing through. That's where the effortless power comes from.",
+      "Hit slow half shots focusing only on that trail arm feel. The lead arm follows — don't force it.",
+    ],
+    feel: "Your trail arm opening a door back and around creates depth, width and a soft elbow all at once — without a single technical thought. It's impossible to arm-lift when you do it correctly.",
+    tip: "This feel directly prevents the two faults identified in your swing videos — arms going up and width collapsing early. The door motion is inherently rotary and wide. If you can only remember one backswing feel on the course, make it this one.",
+  },
+  {
+    id: 10, icon: "👟",
+    source: "BLACKBURN · ANTI-EARLY EXTENSION",
+    name: "Stand Closer — Stop Topping & Thinning",
+    focus: "Posture & Early Extension Fix",
+    level: "beg",
+    equip: "Any Iron",
+    steps: [
+      "Take your normal address position with a mid-iron. Note where your feet are.",
+      "Now step ONE BALL WIDTH closer to the ball than feels comfortable. It should feel like you're almost crowding it — like you're addressing it on the hosel.",
+      "From this position, your body is now INCENTIVISED to push your butt back and keep your chest down — because there's no room to thrust toward the ball without shanking it.",
+      "Make slow swings at 70% effort, focusing on rotating your hips through impact instead of thrusting them at the ball.",
+      "From the top: drive the TOES of your lead foot into the tip of your shoe. The foot won't move — but that pressure pushes your butt back and chest down automatically.",
+      "Check: at impact your chest should still be angled toward the ground, not standing tall. Your butt should have stayed back, not moved toward the ball.",
+      "Once this feels natural at 70%, extend to fuller shots keeping the same feeling.",
+    ],
+    feel: "Blackburn: 'When you set up like that, you're incentivising your body to push your butt back and create space. If you stand too far from the ball, the instinct is to move toward it.' Tiger Woods and Jon Rahm both set up this way — right over the ball.",
+    tip: "This is your direct fix for the round of topped woods and thin irons. Both came from early extension — hips thrusting toward the ball, chest rising, swing arc moving up with your body. Stand closer and there's nowhere for the hips to go except to rotate. Do this drill before every range session until staying in posture becomes automatic.",
+  },
+  {
+    id: 11, icon: "🎈",
+    source: "BLACKBURN METHOD",
+    name: "Noodle Gate — Impact & Shaft Lean",
+    focus: "Impact & Trajectory",
+    level: "adv",
+    equip: "2 Alignment Sticks + Pool Noodle",
+    steps: [
+      "Push two alignment sticks into the ground ~4ft apart, about 7ft ahead of your ball position.",
+      "Rest a pool noodle across the top — roughly knee to thigh height.",
+      "Set the ball slightly back in your stance. Minimal wrist hinge on the backswing.",
+      "Goal: hit the ball UNDER the noodle — a low, penetrating, controlled ball flight.",
+      "Feel your torso rotating toward the target while your thumbs point DOWN all the way into impact.",
+      "The clubhead should TRAIL your hands and body through impact — no flipping, no early release.",
+      "Start with three-quarter swings. Progress to full shots only once you can go consistently under.",
+    ],
+    feel: "Thumbs down, torso leads, clubhead arrives last. That's Homa's impact — low lasers with his wedges, compressed irons. Blackburn: 'He rotates through and hits these low lasers.'",
+    tip: "Blackburn used this exact drill with Homa to move him from 161st to 12th in wedge strokes gained. It's the capstone — it only works once the backswing, tempo, and transition drills are already clicking. Save it for last.",
+  },
+];
+
+let cur = 0;
+const ticked = {};
+const done = new Set();
+
+function pct(id) {
+  const d = drills[id];
+  return Math.round((d.steps.filter((_,i) => ticked[`${id}-${i}`]).length / d.steps.length) * 100);
+}
+
+function pills() {
+  document.getElementById('pills').innerHTML = drills.map((d,i) => {
+    const bg = done.has(i) ? '#c8f135' : i===cur ? 'rgba(200,241,53,0.4)' : '#2a2a2a';
+    return `<div class="prog-seg" style="background:${bg}"></div>`;
+  }).join('');
+}
+
+function tabs() {
+  document.getElementById('tabs').innerHTML = drills.map((d,i) =>
+    `<button class="tab ${i===cur?'active':''} ${done.has(i)?'done':''}" onclick="go(${i})">
+      ${d.icon}<span class="tick">✓</span>
+    </button>`
+  ).join('');
+}
+
+function render() {
+  const d = drills[cur];
+  const p = pct(cur);
+  const prog = drills[cur].steps.filter((_,i) => ticked[`${cur}-${i}`]).length;
+  const total = d.steps.length;
+  const isDone = done.has(cur);
+  const allDone = drills.every((_,i) => done.has(i));
+
+  if (allDone) {
+    document.getElementById('content').innerHTML = `
+      <div class="all-done">
+        <div class="all-done-icon">🏆</div>
+        <div class="all-done-title">SYSTEM COMPLETE</div>
+        <div class="all-done-mantra">
+          POSITION OVER PERFECTION<br>
+          — MARK BLACKBURN
+        </div>
+        <div class="all-done-sub">Hip hinge. Stand closer. Ribcage turns. Open the door.<br>Levitate at the top. Dump the club out.<br>Thumbs down, torso leads, noodle goes under.</div>
+      </div>
+      <button class="btn-full" onclick="resetAll()">RESET ALL DRILLS</button>`;
+    return;
+  }
+
+  const levelClass = {beg:'beg',int:'int',adv:'adv'}[d.level];
+  const levelLabel = {beg:'BEGINNER',int:'INTERMEDIATE',adv:'ADVANCED'}[d.level];
+
+  document.getElementById('content').innerHTML = `
+    <div class="drill-head">
+      <div class="drill-source">${d.source}</div>
+      <div class="drill-name">${d.name}</div>
+      <div class="badges">
+        <span class="badge ${levelClass}">${levelLabel}</span>
+        <span class="badge">▸ ${d.focus}</span>
+        <span class="badge">⚙ ${d.equip}</span>
+      </div>
+    </div>
+
+    <div class="prog-row"><span>PROGRESS</span><span>${prog}/${total} STEPS</span></div>
+    <div class="prog-bar"><div class="prog-fill" style="width:${p}%"></div></div>
+
+    <div class="steps-label">// STEPS</div>
+    ${d.steps.map((s,i) => {
+      const on = !!ticked[`${cur}-${i}`];
+      return `<div class="step ${on?'on':''}" onclick="tick(${cur},${i})">
+        <div class="step-dot">${on?'✓':''}</div>
+        <span class="step-n">${String(i+1).padStart(2,'0')}</span>
+        <span class="step-txt">${s}</span>
+      </div>`;
+    }).join('')}
+
+    <div class="quote-block">
+      <div class="quote-label">// KEY FEEL</div>
+      <div class="quote-text">${d.feel}</div>
+    </div>
+
+    <div class="tip-block">
+      <span class="tip-icon">⚡</span>
+      <div>
+        <div class="tip-label">COACH'S NOTE</div>
+        <div class="tip-text">${d.tip}</div>
+      </div>
+    </div>
+
+    ${isDone ? `
+      <div class="complete">
+        <div class="complete-icon">✅</div>
+        <div class="complete-title">DRILL LOCKED IN</div>
+        <div class="complete-sub">// ${cur < drills.length-1 ? 'MOVE TO NEXT DRILL' : 'FINAL DRILL COMPLETE'}</div>
+        <div class="btn-row">
+          <button class="btn-ghost" onclick="resetDrill()">Reset</button>
+          ${cur < drills.length-1 ? `<button class="btn-solid" onclick="go(${cur+1})">Next →</button>` : ''}
+        </div>
+      </div>
+    ` : `<button class="btn-full" onclick="resetDrill()">// RESET DRILL</button>`}
+  `;
+}
+
+function go(i) { cur = i; pills(); tabs(); render(); window.scrollTo(0,0); }
+
+function tick(id, idx) {
+  const k = `${id}-${idx}`;
+  ticked[k] = !ticked[k];
+  const all = drills[id].steps.every((_,i) => ticked[`${id}-${i}`]);
+  if (all) done.add(id); else done.delete(id);
+  pills(); tabs(); render();
+}
+
+function resetDrill() {
+  drills[cur].steps.forEach((_,i) => delete ticked[`${cur}-${i}`]);
+  done.delete(cur);
+  pills(); tabs(); render();
+}
+
+function resetAll() {
+  Object.keys(ticked).forEach(k => delete ticked[k]);
+  done.clear();
+  go(0);
+}
+
+go(0);
+</script>
+</body>
+</html>
